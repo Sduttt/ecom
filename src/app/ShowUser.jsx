@@ -10,7 +10,7 @@ const ShowUser = () => {
             <h1>
                 User is currently {isAuthenticated ? 'logged in' : 'logged out'}
                 <br />
-                {userData && `User data: ${JSON.stringify(userData.name)}`}
+                {userData && `User data: ${userData.name}`}
                 {console.log(userData)}
             </h1>
         </div>

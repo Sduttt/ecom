@@ -6,6 +6,7 @@ import Signup from "./Signup"
 import Logout from "./Logout"
 
 import Nav from "./Navbar"
+import CategoryDropDown from "./CategoryDropDown"
 
 
 export {
@@ -16,6 +17,7 @@ export {
     Signup,
     Logout,
     
-    Nav as Navbar
+    Nav as Navbar,
+    CategoryDropDown
 
 }

@@ -1,20 +1,25 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import React, { useState } from 'react'
-// import Link from "next/link";
+import React, { useState, useEffect } from 'react'
 import { useRouter } from "next/navigation";
 import { useAuth } from '@/contextapi/AuthContext';
 import { useForm } from "react-hook-form";
 import authService from '@/appwrite/auth';
 import { Button, Input } from '@/components';
+import Cookies from 'js-cookie';
 
 function Login() {
     const router = useRouter()
-    const { setIsAuthenticated, setUserData } = useAuth();
+    const { isAuthenticated, setIsAuthenticated, setUserData } = useAuth();
     const { register, handleSubmit } = useForm();
     const [error, setError] = useState("")
-    // const [email, setEmail] = useState("")
-    // const [password, setPassword] = useState("")
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            router.push('/');
+        }
+    }, [isAuthenticated]);
 
     const login = async (data) => {
         setError("")
@@ -22,9 +27,12 @@ function Login() {
             const session = await authService.login(data)
             if (session) {
                 const userData = await authService.getCurrentUser()
-                if (userData) setIsAuthenticated(true)
-                setUserData(userData)
-                router.push("/")
+                if (userData) {
+                    setIsAuthenticated(true)
+                    Cookies.set("uid", userData.$id, { expires: 1 }, { secure: true })
+                    setUserData(userData)
+                    router.push("/")
+                }
             }
         } catch (error) {
             setError(error.message)
@@ -36,7 +44,7 @@ function Login() {
 
             {error && <div className="text-red-500 text-center">{error}</div>}
 
-            <form onSubmit={handleSubmit(login)} className="flex flex-col space-y-4">
+            <form method='post' onSubmit={handleSubmit(login)} className="flex flex-col space-y-4">
                 <Input
                     label="Email"
                     type="email"
