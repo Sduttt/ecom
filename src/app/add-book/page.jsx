@@ -1,4 +1,6 @@
+'use client'
 import React from 'react'
+import AdminProtected from '@/middleware/AdminProtect'
 
 const AddBook = () => {
   return (
@@ -6,4 +8,4 @@ const AddBook = () => {
   )
 }
 
-export default AddBook
+export default AdminProtected(AddBook)

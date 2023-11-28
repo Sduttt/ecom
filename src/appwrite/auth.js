@@ -19,7 +19,16 @@ export class AuthService {
         try {
             const userAccount = await this.account.create(ID.unique(), email, password, name);
             if (userAccount) {
-                return this.login({ email, password });
+                // return this.login({ email, password });
+                const session = await this.account.createEmailSession(email, password);
+                const url = envconf.appURL;
+                const result = await this.account.createVerification(url);
+                if (result) {
+                    console.log(result)
+                    return session;
+                } else {
+                    return null;
+                }
             } else {
                 return null;
             }
@@ -27,7 +36,7 @@ export class AuthService {
             throw error;
         }
     }
-
+ 
     async login({ email, password }) {
         try {
             return await this.account.createEmailSession(email, password);
@@ -49,6 +58,42 @@ export class AuthService {
         try {
             const user = await this.account.get(id);
             return user
+        } catch (error) {
+            throw error;
+        }
+        return null;
+    }
+
+    async createEmailVarification() {
+        try {
+            const url = envconf.appURL;
+            return await this.account.createVerification(url);
+        } catch (error) {
+            throw error;
+        }
+        return null;
+    }
+    async confirmEmailVerification(userId, secret) {
+        try {
+            return await this.account.updateVerification(userId, secret);
+        } catch (error) {
+            throw error;
+        }
+        return null;
+    }
+
+    async passwordRecovery(email, url){
+        try {
+            return await this.account.createRecovery(email, url);
+        } catch (error) {
+            throw error;
+        }
+        return null;
+    }
+
+    async passwordReset(userId, secret, password, passwordAgain){
+        try {
+            return await this.account.updateRecovery(userId, secret, password, passwordAgain);
         } catch (error) {
             throw error;
         }

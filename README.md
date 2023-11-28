@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Books & Emotions [Under development]
+> A book selling ecommerce website
 
-## Getting Started
+## Tech stack
 
-First, run the development server:
+- Next js [app router] (frontend)
+- Appwrite (backend)
+- Tailwind css (styling)
+- NextUI (components)
+- React-Hook-Form (form validation)
+- MailGun (email service)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Progress
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Register
+- Login
+- Forgot password
+- Reset password
+- Verify email
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Next immediate tasks
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Delete account
+- Add toasts on events like email sent
+- Add book form
 
-## Learn More
+## Bugs unsolved
 
-To learn more about Next.js, take a look at the following resources:
+- Email is only sent to my primary email address, No other email addresses are recieving the verification email
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How to run
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Start docker for appwrite
+- `npm-run-dev` to start nextjs server
 
-## Deploy on Vercel
+**Note:** I have not worked on designing the UI yet. I will do it after I finish the backend part.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

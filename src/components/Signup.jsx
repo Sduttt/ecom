@@ -9,15 +9,16 @@ import { Button, Input } from '@/components';
 import Cookies from 'js-cookie';
 const Signup = () => {
     const [error, setError] = useState("")
+    const [showSuccess, setShowSuccess] = useState(false)
     const router = useRouter()
     const { isAuthenticated, setIsAuthenticated, setUserData } = useAuth();
     const { register, handleSubmit } = useForm();
 
-    useEffect(() => {
-        if (isAuthenticated) {
-            router.push('/');
-        }
-    }, [isAuthenticated]);
+    // useEffect(() => {
+    //     if (isAuthenticated) {
+    //         router.push('/');
+    //     }
+    // }, [isAuthenticated]);
     
     const createAccount = async (data) => {
         setError("")
@@ -29,7 +30,7 @@ const Signup = () => {
                     setIsAuthenticated(true)
                     Cookies.set("uid", userData.$id)
                     setUserData(userData)
-                    router.push("/")
+                    setShowSuccess(true)
                 }
             }
         } catch (error) {
@@ -41,7 +42,7 @@ const Signup = () => {
     return (
         <div>
             {error && <div className="text-red-500 text-center">{error}</div>}
-
+            {showSuccess &&<> <div className="text-green-500 text-center">Account created successfully</div> <div className="text-center">Please check your email for varification link.</div> </>}
             <form onSubmit={handleSubmit(createAccount)} className="flex flex-col space-y-4">
                 <Input
                     label="name"

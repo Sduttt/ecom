@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import authService from '@/appwrite/auth';
 import { Button, Input } from '@/components';
 import Cookies from 'js-cookie';
+import { Link } from '@nextui-org/react';
 
 function Login() {
     const router = useRouter()
@@ -43,7 +44,7 @@ function Login() {
         <div className="">
 
             {error && <div className="text-red-500 text-center">{error}</div>}
-
+            <Link href="/forgot-password" className="text-center text-blue-500">Forgot Password?</Link>
             <form method='post' onSubmit={handleSubmit(login)} className="flex flex-col space-y-4">
                 <Input
                     label="Email"
