@@ -14,14 +14,17 @@
 
 - Register
 - Login
+- Logout
 - Forgot password
 - Reset password
 - Verify email
+- Delete Account
 
 ## Next immediate tasks
 
 - Delete account
 - Add toasts on events like email sent
+- Create session in appwrite automatically if cookies and contextapi says logged in
 - Add book form
 
 ## Bugs unsolved

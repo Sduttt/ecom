@@ -36,7 +36,7 @@ export class AuthService {
             throw error;
         }
     }
- 
+
     async login({ email, password }) {
         try {
             return await this.account.createEmailSession(email, password);
@@ -82,7 +82,7 @@ export class AuthService {
         return null;
     }
 
-    async passwordRecovery(email, url){
+    async passwordRecovery(email, url) {
         try {
             return await this.account.createRecovery(email, url);
         } catch (error) {
@@ -91,7 +91,7 @@ export class AuthService {
         return null;
     }
 
-    async passwordReset(userId, secret, password, passwordAgain){
+    async passwordReset(userId, secret, password, passwordAgain) {
         try {
             return await this.account.updateRecovery(userId, secret, password, passwordAgain);
         } catch (error) {
@@ -104,6 +104,16 @@ export class AuthService {
         try {
             return await this.account.deleteSessions('current');
         } catch (error) {
+            throw error;
+        }
+    }
+
+    async accountSoftDelete() {
+        try {
+            const deleteAcc = this.account.updateStatus();
+            return deleteAcc;
+        }        
+        catch (error) {
             throw error;
         }
     }

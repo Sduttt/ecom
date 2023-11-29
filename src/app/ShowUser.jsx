@@ -1,6 +1,7 @@
 "use client";
 import React from 'react'
 import { useAuth } from "@/contextapi/AuthContext";
+import { DeleteAccount } from '@/components';
 
 const ShowUser = () => {
     const { isAuthenticated, setIsAuthenticated, userData, setUserData } = useAuth();
@@ -13,7 +14,10 @@ const ShowUser = () => {
                 {userData && `User data: ${userData.name}`}
                 {console.log(userData)}
             </h1>
-        </div>
+
+            <DeleteAccount />
+
+        </div >
     )
 }
 

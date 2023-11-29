@@ -9,10 +9,11 @@ const ForgotPassword = () => {
 
     const { register, handleSubmit } = useForm();
     const [error, setError] = useState(null)
+    const resetURL = `${envconf.appURL}/reset-password`
 
     const passwordRecover = async (data) => {
         try {
-            const response = await authService.passwordRecovery(data.email, "http://localhost:3000/reset-password");
+            const response = await authService.passwordRecovery(data.email, resetURL);
             console.log(response);
         } catch (e) {
             setError(e.message);
