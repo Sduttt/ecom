@@ -1,39 +1,10 @@
 import React from 'react'
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@nextui-org/react";
-
+import { menuItems } from './data';
 
 const CategoryDropDown = () => {
 
-    const menuItems = [
-        {
-            name: "Classic",
-            link: "/classic"
-        },
-        {
-            name: "Self Help",
-            link: "/self-help"
-        },
-        {
-            name: "Romance",
-            link: "/romance"
-        },
-        {
-            name: "Thriller/Detective",
-            link: "/thriller-detective"
-        },
-        {
-            name: "Relegious & Spiritual",
-            link: "/relegious-spiritual"
-        },
-        {
-            name: "Non Fiction",
-            link: "/non-fiction"
-        },
-        {
-            name: "Others",
-            link: "/others"
-        }
-    ]
+
     return (
         <Dropdown>
             <DropdownTrigger>

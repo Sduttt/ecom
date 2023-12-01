@@ -1,10 +1,14 @@
 'use client'
 import React from 'react'
 import AdminProtected from '@/middleware/AdminProtect'
+import { AddBookForm } from '@/components'
 
 const AddBook = () => {
   return (
-    <div>AddBook</div>
+    <>
+      <h1 className="">Add a book</h1>
+      <AddBookForm />
+    </>
   )
 }
 

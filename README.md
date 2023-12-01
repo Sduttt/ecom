@@ -19,13 +19,15 @@
 - Reset password
 - Verify email
 - Delete Account
+- Add book form 
 
 ## Next immediate tasks
 
-- Delete account
+- Show book
+- Update book
 - Add toasts on events like email sent
 - Create session in appwrite automatically if cookies and contextapi says logged in
-- Add book form
+- compress and rename image file before uploading to appwrite
 
 ## Bugs unsolved
 

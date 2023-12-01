@@ -3,10 +3,12 @@ import { Button } from '@nextui-org/react'
 import React, { useState } from 'react'
 import { useAuth } from '@/contextapi/AuthContext';
 import authService from '@/appwrite/auth';
+import Link from 'next/link';
 
 const DeleteAccount = () => {
     const { isAuthenticated, setIsAuthenticated, setUserData } = useAuth();
     const [error, setError] = useState(null)
+    const [confirmDlt, setConfirmDlt] = useState(false)
 
 
     const deleteAccount = async () => {
@@ -28,7 +30,20 @@ const DeleteAccount = () => {
         {error && <div className="text-red-500 text-center">{error}</div>}
         {
             isAuthenticated ? (
-                <Button onClick={deleteAccount}>Delete Account</Button>
+                <>
+                <Button onClick={() => setConfirmDlt(true)}>Delete Account</Button>
+
+                {confirmDlt ? (
+                    <>
+                        <p>Are you sure you want to delete your account?</p>
+                        <Link href={'/'}><Button onClick={() => setConfirmDlt(false)}>No</Button></Link>
+                        <Button onClick={deleteAccount} variant="flat">Yes</Button>
+                    </>
+                ) : (
+                    ""
+                )}
+
+                </>
             ) : ""
         }
         </>

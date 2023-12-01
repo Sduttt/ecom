@@ -108,36 +108,22 @@ export class Service {
 
     // create book
 
-    async createBook({ bookId, Title, author, publisher, stock, mrp, price, isUsed, isHardcover, language, gener, description, img1, img2, img3, timeStamp }) {
+    async createBook(data) {
         try {
-            return await this.databases.createDocument(
+            console.log("Creating book with data: ", data);
+            const result = await this.databases.createDocument(
                 envconf.appwriteDatabaseId,
                 envconf.appwriteBooksCollectionId,
-                bookId,
-                {
-                    Title,
-                    author,
-                    publisher,
-                    stock,
-                    mrp,
-                    price,
-                    isUsed,
-                    isHardcover,
-                    language,
-                    gener,
-                    description,
-                    img1,
-                    img2,
-                    img3,
-                    timeStamp
-                }
-            )
+                ID.unique(),
+                data
+            );
+            console.log("Book created with result: ", result);
+            return result;
         } catch (error) {
+            console.error("Error in createBook: ", error);
             throw error;
         }
-
     }
-
     // update book
 
     async updateBook(bookId,
@@ -156,7 +142,8 @@ export class Service {
             img1,
             img2,
             img3,
-            timeStamp
+            timeStamp,
+            adminId
         }) {
         try {
             return await this.databases.createDocument(
@@ -178,7 +165,9 @@ export class Service {
                     img1,
                     img2,
                     img3,
-                    timeStamp
+                    timeStamp,
+                    adminId
+
                 }
             )
         } catch (error) {
@@ -263,17 +252,21 @@ export class Service {
     }
 
 
-
     // file upload services
+
 
     async uploadFile(file) {
         try {
-            return await this.bucket.createFile(
-                config.bucketId,
+            console.log("Uploading file: ", file);
+            const result = await this.bucket.createFile(
+                envconf.appwriteBucketID,
                 ID.unique(),
                 file,
-            )
+            );
+            console.log("File uploaded with result: ", result);
+            return result;
         } catch (error) {
+            console.error("Error in uploadFile: ", error);
             throw error;
         }
     }
@@ -281,7 +274,7 @@ export class Service {
     async deleteFile(fileId) {
         try {
             await this.bucket.deleteFile(
-                config.bucketId,
+                envconf.appwriteBucketID,
                 fileId
             )
             return true;
@@ -294,7 +287,7 @@ export class Service {
     getFile(fileId) {
         try {
             return this.bucket.getFilePreview(
-                config.bucketId,
+                envconf.appwriteBucketID,
                 fileId
             )
         } catch (error) {

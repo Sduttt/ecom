@@ -8,6 +8,8 @@ import ForgotPassword from "./ForgotPassword"
 import ResetPassword from "./ResetPassword"
 import DeleteAccount from "./DeleteAccount"
 
+import AddBookForm from "./AddBookForm"
+
 import Nav from "./Navbar"
 import CategoryDropDown from "./CategoryDropDown"
 
@@ -22,6 +24,8 @@ export {
     ForgotPassword,
     ResetPassword,
     DeleteAccount,
+
+    AddBookForm,
     
     Nav as Navbar,
     CategoryDropDown
